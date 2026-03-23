@@ -172,6 +172,34 @@ but others were accidentally forgotten.
 
 [crates.io]: https://crates.io/
 
+## How do I ship?
+
+It depends on what you are shipping:
+
+* **A binary for users to install**: publish your crate and have users run
+  [`cargo install`] with your package name.
+* **A library for other Rust projects**: publish your crate and have users add
+  it as a dependency in their `Cargo.toml`.
+* **A standalone release artifact**: run [`cargo build --release`] and ship the
+  executable in `target/release/`.
+
+A typical flow looks like this:
+
+1. Ensure your package metadata is complete (`name`, `version`,
+   `description`, `license`, etc.) in `Cargo.toml`.
+2. Run tests with `cargo test`.
+3. Dry-run packaging with [`cargo publish --dry-run`] to validate the publish
+   process.
+4. Publish with [`cargo publish`].
+
+For details, see the [publishing reference][publishing-ref] and
+[`cargo publish`].
+
+[`cargo build --release`]: commands/cargo-build.md
+[`cargo publish`]: commands/cargo-publish.md
+[`cargo publish --dry-run`]: commands/cargo-publish.md
+[publishing-ref]: reference/publishing.md
+
 ## How can Cargo work offline?
 
 The [`--offline`](commands/cargo.html#option-cargo---offline) or
